@@ -1,6 +1,6 @@
 import Comment from "./Comment";
 import Form from "./Form";
-import dataJson from "./data.json";
+import dataJson from "../public/data.json";
 
 function App() {
   const comments = dataJson.comments;

@@ -16,7 +16,7 @@ const Reply = ({ data }) => {
           <div className="w-4 h-4 grid place-content-center hover:cursor-pointer">
             <img
               className="w-3 h-3  hover:cursor-pointer "
-              src="src\images\icon-plus.svg"
+              src="..\public\images\icon-plus.svg"
               alt="plus"
             />
           </div>
@@ -24,14 +24,18 @@ const Reply = ({ data }) => {
           <div className="w-4 h-4 grid place-content-center hover:cursor-pointer">
             <img
               className="w-3 h-1 "
-              src="src\images\icon-minus.svg"
+              src="..\public\images\icon-minus.svg"
               alt="minus"
             />
           </div>
         </div>
       </div>
       <div className=" flex gap-2 hover:opacity-50 transition-text ease-out duration-300 hover: cursor-pointer absolute sm:top-6 items-center  max-sm:bottom-6  right-6">
-        <img className="w-4 h-4" src="src\images\icon-reply.svg" alt="reply" />
+        <img
+          className="w-4 h-4"
+          src="..\public\images\icon-reply.svg"
+          alt="reply"
+        />
         <p className="text-Moderate-blue font-normal-2 ">Reply</p>
       </div>
     </section>
