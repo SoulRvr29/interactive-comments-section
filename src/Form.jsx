@@ -5,7 +5,6 @@ const Form = ({ sendHandler, currentUser }) => {
 
   return (
     <>
-      {/* <div id="comment">{comment}</div> */}
       <form className="max-w-[730px] mx-auto p-4 flex flex-wrap  justify-between gap-4 bg-White rounded-lg sm:flex-nowrap">
         <label htmlFor="comment" className="hidden"></label>
         <textarea
@@ -25,7 +24,6 @@ const Form = ({ sendHandler, currentUser }) => {
           alt="avatar"
         />
         <button
-          // type="submit"
           onClick={(e) => {
             e.preventDefault();
             sendHandler(newComment);

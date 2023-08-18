@@ -3,7 +3,9 @@ import { useState } from "react";
 
 const Comment = ({ comment, currentUser, deleteHandler }) => {
   const [score, setScore] = useState(comment.score);
-  const replies = comment.replies;
+  const [edit, setEdit] = useState(false);
+  const [editableComment, setEditableComment] = useState(comment.content);
+  // const replies = comment.replies;
 
   const buttonHandler = (btn) => {
     if (btn == "plus" && score - comment.score < 1) setScore(score + 1);
@@ -22,10 +24,32 @@ const Comment = ({ comment, currentUser, deleteHandler }) => {
             <p className="font-rubik">{comment.createdAt}</p>
           </header>
           {/* COMMENT */}
-          <p className="grid">{comment.content}</p>
+          {!edit && <p className="grid">{editableComment}</p>}
+          {edit && (
+            <>
+              <textarea
+                className="border rounded-lg px-5 py-3 hover:cursor-pointer hover:border-Dark-blue hover:text-Dark-blue transition-all ease-out duration-300 w-full "
+                name="comment"
+                onChange={(e) => setEditableComment(e.target.value)}
+                value={editableComment}
+                id="comment"
+                cols="30"
+                rows="3"
+                placeholder="Add a comment..."
+              ></textarea>
+              <button
+                onClick={(e) => {
+                  setEdit(false);
+                }}
+                className="w-fit h-fit  bg-Moderate-blue text-Very-light-gray py-3 px-8 rounded-lg hover:bg-Light-grayish-blue transition-bg duration-300 ease-out place-self-end"
+              >
+                UPDATE
+              </button>
+            </>
+          )}
         </div>
         {/* SCORE */}
-        <div className="flex relative justify-between items-center">
+        <div className="flex relative justify-between items-center place-self-start">
           <div className="flex flex-col max-sm:flex-row items-center gap-3 px-3 py-3 w-fit rounded-lg bg-Very-light-gray max-sm:px-4 max-sm:py-2">
             <div
               id="plusBtn"
@@ -68,7 +92,10 @@ const Comment = ({ comment, currentUser, deleteHandler }) => {
               />
               <p className="text-Soft-Red font-normal-2 ">Delete</p>
             </div>
-            <div className=" flex gap-2 hover:opacity-50 transition-text ease-out duration-300 hover: cursor-pointer absolute sm:top-6 items-center  max-sm:bottom-6  right-6">
+            <div
+              className=" flex gap-2 hover:opacity-50 transition-text ease-out duration-300 hover: cursor-pointer absolute sm:top-6 items-center  max-sm:bottom-6  right-6"
+              onClick={() => setEdit(true)}
+            >
               <img
                 className="w-4 h-4"
                 src=".\images\icon-edit.svg"
