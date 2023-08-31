@@ -1,21 +1,28 @@
-import Reply from "./Reply";
 import { useState } from "react";
+import dataJson from "./data.json";
+import Form from "./Form";
 
-const Comment = ({ comment, currentUser, deleteHandler }) => {
+const Comment = ({ comment, deleteHandler, sendHandler, setCommentsData }) => {
   const [score, setScore] = useState(comment.score);
   const [edit, setEdit] = useState(false);
   const [editableComment, setEditableComment] = useState(comment.content);
-  // const replies = comment.replies;
+  const [form, setForm] = useState(false);
 
   const buttonHandler = (btn) => {
     if (btn == "plus" && score - comment.score < 1) setScore(score + 1);
     if (btn == "minus" && comment.score - score < 1) setScore(score - 1);
   };
 
+  const replyHandler = (reply) => {
+    setCommentsData({});
+    console.log(reply);
+    console.log(comment);
+    console.log(comment.replies);
+  };
   return (
     <>
       <section className="max-w-[730px]  mx-auto mb-4 p-4 flex max-sm:flex-col flex-row-reverse gap-4 bg-White rounded-lg relative">
-        <div className="grid gap-4 w-full">
+        <div className="grid gap-4 w-full ">
           <header className="flex items-center gap-4">
             <img className="w-8" src={comment.user.image.png} alt="avatar" />
             <h1 className="text-Dark-blue font-bold font-rubik">
@@ -79,7 +86,7 @@ const Comment = ({ comment, currentUser, deleteHandler }) => {
           </div>
         </div>
         {/* REPLY, EDIT, DELETE BUTTONS */}
-        {comment.user.username == currentUser.username ? (
+        {comment.user.username == dataJson.currentUser.username ? (
           <>
             <div
               className=" flex gap-2 hover:opacity-50 transition-text ease-out duration-300 hover: cursor-pointer absolute sm:top-6 items-center  max-sm:bottom-6  right-[6rem]"
@@ -105,7 +112,10 @@ const Comment = ({ comment, currentUser, deleteHandler }) => {
             </div>
           </>
         ) : (
-          <div className=" flex gap-2 hover:opacity-50 transition-text ease-out duration-300 hover: cursor-pointer absolute sm:top-6 items-center  max-sm:bottom-6  right-6">
+          <div
+            className=" flex gap-2 hover:opacity-50 transition-text ease-out duration-300 hover: cursor-pointer absolute sm:top-6 items-center  max-sm:bottom-6  right-6"
+            onClick={() => setForm(!form)}
+          >
             <img
               className="w-4 h-4"
               src=".\images\icon-reply.svg"
@@ -115,17 +125,27 @@ const Comment = ({ comment, currentUser, deleteHandler }) => {
           </div>
         )}
       </section>
-      {/* <div className="pl-4 border-l-2 max-w-[730px] mx-auto">
-        {replies.length
-          ? replies.map((item) => (
-              <Reply
-                key={item.id}
-                comment={item}
-                currentUser={currentUser}
-              ></Reply>
-            ))
-          : ""}
-      </div> */}
+      <div className="pl-4 border-l-2 max-w-[730px] mx-auto">
+        {/* {replies &&
+          replies.map((reply) => (
+            <Comment
+              comment={reply}
+              key={reply.id}
+              deleteHandler={deleteHandler}
+              sendHandler={sendHandler}
+            ></Comment>
+          ))} */}
+        {comment.replies &&
+          comment.replies.map((reply) => (
+            <Comment
+              comment={reply}
+              key={reply.id}
+              deleteHandler={deleteHandler}
+              sendHandler={sendHandler}
+            ></Comment>
+          ))}
+      </div>
+      {form && <Form sendHandler={replyHandler}></Form>}
     </>
   );
 };
