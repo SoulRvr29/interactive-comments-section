@@ -45,7 +45,7 @@ function App() {
           ></Comment>
         </>
       ))}
-      <Form sendHandler={sendHandler}></Form>
+      <Form key={"1f"} sendHandler={sendHandler}></Form>
     </main>
   );
 }

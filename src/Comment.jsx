@@ -145,7 +145,7 @@ const Comment = ({ comment, deleteHandler, sendHandler, setCommentsData }) => {
             ></Comment>
           ))}
       </div>
-      {form && <Form sendHandler={replyHandler}></Form>}
+      {form && <Form key={comment.id + "f"} sendHandler={replyHandler}></Form>}
     </>
   );
 };
