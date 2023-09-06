@@ -1,4 +1,5 @@
 import Comment from "./Comment";
+import Footer from "./Footer";
 import Form from "./Form";
 import dataJson from "./data.json";
 import { useState } from "react";
@@ -33,20 +34,23 @@ function App() {
   };
 
   return (
-    <main className="min-h-screen px-4 py-8 bg-Very-light-gray text-Grayish-Blue font-normal ">
-      {commentsData.map((comment) => (
-        <>
-          <Comment
-            setCommentsData={setCommentsData}
-            comment={comment}
-            key={comment.id}
-            deleteHandler={deleteHandler}
-            sendHandler={sendHandler}
-          ></Comment>
-        </>
-      ))}
-      <Form key={"1f"} sendHandler={sendHandler}></Form>
-    </main>
+    <>
+      <main className=" px-4 py-8 pb-4 bg-Very-light-gray text-Grayish-Blue font-normal ">
+        {commentsData.map((comment) => (
+          <>
+            <Comment
+              setCommentsData={setCommentsData}
+              comment={comment}
+              key={comment.id}
+              deleteHandler={deleteHandler}
+              sendHandler={sendHandler}
+            ></Comment>
+          </>
+        ))}
+        <Form key={"1f"} sendHandler={sendHandler}></Form>
+      </main>
+      <Footer />
+    </>
   );
 }
 
