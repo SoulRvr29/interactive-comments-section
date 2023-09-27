@@ -2,7 +2,13 @@ import { useState } from "react";
 import dataJson from "./data.json";
 import Form from "./Form";
 
-const Comment = ({ comment, deleteHandler, sendHandler, setCommentsData }) => {
+const Comment = ({
+  comment,
+  deleteHandler,
+  sendHandler,
+  setCommentsData,
+  commentsData,
+}) => {
   const [score, setScore] = useState(comment.score);
   const [edit, setEdit] = useState(false);
   const [editableComment, setEditableComment] = useState(comment.content);
@@ -14,9 +20,13 @@ const Comment = ({ comment, deleteHandler, sendHandler, setCommentsData }) => {
   };
 
   const replyHandler = (reply) => {
-    setCommentsData({});
+    console.log(commentsData);
+    setCommentsData([
+      { ...commentsData[0] },
+      { ...commentsData[1], content: "fdfsd" },
+    ]);
     console.log(reply);
-    console.log(comment);
+    console.log(commentsData);
     console.log(comment.replies);
   };
   return (

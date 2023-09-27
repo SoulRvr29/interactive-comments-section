@@ -39,6 +39,7 @@ function App() {
         {commentsData.map((comment) => (
           <>
             <Comment
+              commentsData={commentsData}
               setCommentsData={setCommentsData}
               comment={comment}
               key={comment.id}
