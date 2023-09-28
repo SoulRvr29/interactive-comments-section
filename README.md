@@ -6,13 +6,12 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 
 ## Table of contents
 
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
+- [The challenge](#the-challenge)
+- [Screenshot](#screenshot)
+- [Links](#links)
 - [My process](#my-process)
-  - [Built with](#built-with)
+- [Built with](#built-with)
 - [Author](#author)
-
 
 ### The challenge
 
