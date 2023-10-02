@@ -5,27 +5,60 @@ import Form from "./Form";
 const Comment = ({
   comment,
   deleteHandler,
-  sendHandler,
-  setCommentsData,
-  commentsData,
+  // sendHandler,
+  // setCommentsData,
+  // commentsData,
 }) => {
+  // console.log(comment);
   const [score, setScore] = useState(comment.score);
   const [edit, setEdit] = useState(false);
   const [editableComment, setEditableComment] = useState(comment.content);
   const [form, setForm] = useState(false);
+  const [repliesData, setRepliesData] = useState(comment.replies);
 
   const buttonHandler = (btn) => {
     if (btn == "plus" && score - comment.score < 1) setScore(score + 1);
     if (btn == "minus" && comment.score - score < 1) setScore(score - 1);
   };
 
-  const replyHandler = (reply) => {
-    console.log(commentsData);
-    setCommentsData([...commentsData]);
-    console.log(reply);
-    console.log(commentsData);
-    console.log(comment.replies);
+  // const replyHandler = (reply) => {
+  //   console.log(commentsData);
+  //   setCommentsData([...commentsData]);
+  //   console.log(reply);
+  //   console.log(commentsData);
+  //   console.log(comment.replies);
+  // };
+
+  const replySendHandler = (newComment) => {
+    setRepliesData([
+      ...repliesData,
+      {
+        id: repliesData.length + 1,
+        content: newComment,
+        createdAt: "now",
+        score: 0,
+        user: {
+          image: {
+            png: dataJson.currentUser.image.png,
+            webp: dataJson.currentUser.image.webp,
+          },
+          username: dataJson.currentUser.username,
+        },
+        replies: [],
+      },
+    ]);
+    setForm(!form);
+    console.log(repliesData);
   };
+
+  const replyDeleteHandler = (commentId) => {
+    console.log(commentId);
+
+    setRepliesData([...repliesData.filter((item) => item.id != commentId)]);
+
+    console.log(repliesData);
+  };
+
   return (
     <>
       <section className="max-w-[730px]  mx-auto mb-4 p-4 flex max-sm:flex-col flex-row-reverse gap-4 bg-White rounded-lg relative">
@@ -142,17 +175,19 @@ const Comment = ({
               sendHandler={sendHandler}
             ></Comment>
           ))} */}
-        {comment.replies &&
-          comment.replies.map((reply) => (
+        {repliesData &&
+          repliesData.map((reply) => (
             <Comment
               comment={reply}
               key={reply.id}
-              deleteHandler={deleteHandler}
-              sendHandler={sendHandler}
+              deleteHandler={replyDeleteHandler}
+              sendHandler={replySendHandler}
             ></Comment>
           ))}
       </div>
-      {/* {form && <Form key={comment.id + "f"} sendHandler={replyHandler}></Form>} */}
+      {form && (
+        <Form key={comment.id + "f"} sendHandler={replySendHandler}></Form>
+      )}
     </>
   );
 };

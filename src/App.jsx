@@ -28,7 +28,7 @@ function App() {
   };
 
   const deleteHandler = (commentId) => {
-    console.log(commentId);
+    // console.log(commentId);
 
     setCommentsData([...commentsData.filter((item) => item.id != commentId)]);
   };
@@ -39,8 +39,8 @@ function App() {
         {commentsData.map((comment) => (
           <>
             <Comment
-              commentsData={commentsData}
-              setCommentsData={setCommentsData}
+              // commentsData={commentsData}
+              // setCommentsData={setCommentsData}
               comment={comment}
               key={comment.id}
               deleteHandler={deleteHandler}
