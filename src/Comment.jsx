@@ -21,10 +21,7 @@ const Comment = ({
 
   const replyHandler = (reply) => {
     console.log(commentsData);
-    setCommentsData([
-      { ...commentsData[0] },
-      { ...commentsData[1], content: "fdfsd" },
-    ]);
+    setCommentsData([...commentsData]);
     console.log(reply);
     console.log(commentsData);
     console.log(comment.replies);
@@ -155,7 +152,7 @@ const Comment = ({
             ></Comment>
           ))}
       </div>
-      {form && <Form key={comment.id + "f"} sendHandler={replyHandler}></Form>}
+      {/* {form && <Form key={comment.id + "f"} sendHandler={replyHandler}></Form>} */}
     </>
   );
 };
