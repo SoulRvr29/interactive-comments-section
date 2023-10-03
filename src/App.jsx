@@ -28,19 +28,15 @@ function App() {
   };
 
   const deleteHandler = (commentId) => {
-    // console.log(commentId);
-
     setCommentsData([...commentsData.filter((item) => item.id != commentId)]);
   };
 
   return (
     <>
-      <main className=" px-4 py-8 pb-4 bg-Very-light-gray text-Grayish-Blue font-normal ">
+      <main className=" px-4 py-8 pb-14 bg-Very-light-gray text-Grayish-Blue font-normal min-h-screen">
         {commentsData.map((comment) => (
           <>
             <Comment
-              // commentsData={commentsData}
-              // setCommentsData={setCommentsData}
               comment={comment}
               key={comment.id}
               deleteHandler={deleteHandler}
@@ -48,6 +44,7 @@ function App() {
             ></Comment>
           </>
         ))}
+        <hr className="mb-4 border max-w-[730px] mx-auto border-Moderate-blue" />
         <Form key={"1f"} sendHandler={sendHandler}></Form>
       </main>
       <Footer />

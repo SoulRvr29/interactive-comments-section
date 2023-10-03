@@ -2,14 +2,7 @@ import { useState } from "react";
 import dataJson from "./data.json";
 import Form from "./Form";
 
-const Comment = ({
-  comment,
-  deleteHandler,
-  // sendHandler,
-  // setCommentsData,
-  // commentsData,
-}) => {
-  // console.log(comment);
+const Comment = ({ comment, deleteHandler }) => {
   const [score, setScore] = useState(comment.score);
   const [edit, setEdit] = useState(false);
   const [editableComment, setEditableComment] = useState(comment.content);
@@ -21,15 +14,8 @@ const Comment = ({
     if (btn == "minus" && comment.score - score < 1) setScore(score - 1);
   };
 
-  // const replyHandler = (reply) => {
-  //   console.log(commentsData);
-  //   setCommentsData([...commentsData]);
-  //   console.log(reply);
-  //   console.log(commentsData);
-  //   console.log(comment.replies);
-  // };
-
   const replySendHandler = (newComment) => {
+    console.log(repliesData);
     setRepliesData([
       ...repliesData,
       {
@@ -68,6 +54,11 @@ const Comment = ({
             <h1 className="text-Dark-blue font-bold font-rubik">
               {comment.user.username}
             </h1>
+            {comment.user.username == "juliusomo" && (
+              <div className="bg-Moderate-blue text-Very-light-gray text-xs px-[6px] py-[2px] rounded-sm">
+                you
+              </div>
+            )}
             <p className="font-rubik">{comment.createdAt}</p>
           </header>
           {/* COMMENT */}
@@ -166,22 +157,12 @@ const Comment = ({
         )}
       </section>
       <div className="pl-4 border-l-2 max-w-[730px] mx-auto">
-        {/* {replies &&
-          replies.map((reply) => (
-            <Comment
-              comment={reply}
-              key={reply.id}
-              deleteHandler={deleteHandler}
-              sendHandler={sendHandler}
-            ></Comment>
-          ))} */}
         {repliesData &&
           repliesData.map((reply) => (
             <Comment
-              comment={reply}
+              comment={{ ...reply, replies: [] }}
               key={reply.id}
               deleteHandler={replyDeleteHandler}
-              sendHandler={replySendHandler}
             ></Comment>
           ))}
       </div>
