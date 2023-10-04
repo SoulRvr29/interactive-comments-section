@@ -7,7 +7,6 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 - [The challenge](#the-challenge)
 - [Screenshot](#screenshot)
 - [Links](#links)
-- [My process](#my-process)
 - [Built with](#built-with)
 - [Author](#author)
 
@@ -26,7 +25,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [https://www.frontendmentor.io/solutions/interactive-comments-section-jhs-JRv599](https://www.frontendmentor.io/solutions/interactive-comments-section-jhs-JRv599)
 - Live Site URL: [https://soulrvr29.github.io/interactive-comments-section/](https://soulrvr29.github.io/interactive-comments-section/)
 
 ### Built with
