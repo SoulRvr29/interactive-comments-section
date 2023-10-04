@@ -91,7 +91,6 @@ const Comment = ({ comment, deleteHandler }) => {
         <div className="flex relative justify-between items-center place-self-start">
           <div className="flex flex-col max-sm:flex-row items-center gap-3 px-3 py-3 w-fit rounded-lg bg-Very-light-gray max-sm:px-4 max-sm:py-2">
             <div
-              id="plusBtn"
               onClick={() => buttonHandler("plus")}
               className="w-4 h-4 grid place-content-center hover:cursor-pointer text-Light-grayish-blue hover:text-Moderate-blue transition-text ease-out duration-300"
             >
@@ -104,7 +103,6 @@ const Comment = ({ comment, deleteHandler }) => {
             </div>
             <p className="text-Moderate-blue font-normal-2">{score}</p>
             <div
-              id="minusBtn"
               onClick={() => buttonHandler("minus")}
               className="w-4 h-4 grid place-content-center hover:cursor-pointer text-Light-grayish-blue hover:text-Moderate-blue transition-text ease-out duration-300"
             >
