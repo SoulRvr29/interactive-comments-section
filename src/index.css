@@ -7,3 +7,16 @@
 body {
   font-family: "Rubik", sans-serif;
 }
+
+.delete-confirm {
+  animation: fade 1s forwards;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

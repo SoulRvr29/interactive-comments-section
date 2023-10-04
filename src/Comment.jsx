@@ -8,6 +8,7 @@ const Comment = ({ comment, deleteHandler }) => {
   const [editableComment, setEditableComment] = useState(comment.content);
   const [form, setForm] = useState(false);
   const [repliesData, setRepliesData] = useState(comment.replies);
+  const [deleteConfirm, setDeleteConfirm] = useState(false);
 
   const buttonHandler = (btn) => {
     if (btn == "plus" && score - comment.score < 1) setScore(score + 1);
@@ -121,7 +122,8 @@ const Comment = ({ comment, deleteHandler }) => {
           <>
             <div
               className=" flex gap-2 hover:opacity-50 transition-text ease-out duration-300 hover: cursor-pointer absolute sm:top-6 items-center  max-sm:bottom-6  right-[6rem]"
-              onClick={() => deleteHandler(comment.id)}
+              // onClick={() => deleteHandler(comment.id)}
+              onClick={() => setDeleteConfirm(true)}
             >
               <img
                 className="w-4 h-4"
@@ -168,6 +170,35 @@ const Comment = ({ comment, deleteHandler }) => {
       </div>
       {form && (
         <Form key={comment.id + "f"} sendHandler={replySendHandler}></Form>
+      )}
+      {/* delete confirm window */}
+      {deleteConfirm && (
+        <div className="delete-confirm w-screen h-screen fixed top-0 left-0 grid place-content-center z-10 ">
+          <div className="bg-black w-screen h-screen absolute top-0 left-0 opacity-50 z-10"></div>
+          <div className="bg-White px-7 py-8 rounded-lg opacity-100 max-w-sm z-20 mx-4">
+            <h3 className="text-Dark-blue text-2xl font-normal-2">
+              Delete comment
+            </h3>
+            <p className="my-4">
+              Are you sure you want to delete this comment? This will remove the
+              comment and can't be undone.
+            </p>
+            <div className="flex gap-4 justify-center">
+              <button
+                className="w-fit h-fit  bg-Grayish-Blue text-Very-light-gray py-3 px-7 rounded-lg hover:opacity-75 transition-bg duration-300 ease-out  max-md:w-max max-md:px-6 max-[390px]:px-4"
+                onClick={() => setDeleteConfirm(false)}
+              >
+                NO, CANCEL
+              </button>
+              <button
+                className="w-fit h-fit  bg-Soft-Red text-Very-light-gray py-3 px-8 rounded-lg hover:opacity-75 transition-bg duration-300 ease-out  max-md:w-max max-md:px-6 max-[390px]:px-4"
+                onClick={() => deleteHandler(comment.id)}
+              >
+                YES, DELETE
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );
